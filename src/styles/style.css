@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+}
+
+body {
+    background-color: #1e1e1e;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+}
+
+.navbar .menu-logo,
+.navbar .side-menu-icon {
+    width: 48px;
+    filter: invert(1);
+    margin: 8px;
+}
+
+@media (min-width: 600px) {
+    .navbar .side-menu-icon {
+        display: none;
+    }
+}
