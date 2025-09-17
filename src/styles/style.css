@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text-color: #fff;
+    --background-color: #1e1e1e;
+
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    position: relative;
+}
+
+.menu .menu-logo,
+.menu .side-menu-button {
+    width: 48px;
+    filter: invert(1);
+    margin: 8px;
+}
+
+.menu .side-menu {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: var(--background-color);
+}
+
+.menu .side-menu .side-menu-header {
+    display: flex;
+    justify-content: end;
+    margin-right: 8px;
+}
+
+.menu .side-menu .side-menu-header .side-menu-close-button {
+    margin-top: 8px;
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.menu .side-menu-list .side-menu-item {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    gap: 16px;
+    height: 82px;
+    border-bottom: 1px solid #fff;
+}
+
+.menu .side-menu-list .side-menu-item img {
+    width: 18px;
+    filter: invert(1);
+}
+
+.menu .side-menu-list .side-menu-item a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+@media (min-width: 600px) {
+    .menu .side-menu-button {
+        display: none;
+    }
+}
