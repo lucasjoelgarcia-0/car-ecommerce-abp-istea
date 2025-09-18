@@ -8,33 +8,56 @@
 </head>
 <body>
     <nav class="menu">
-        <img class="menu-logo" src="img/logo.svg" alt="logo">
+        <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
 
         <h1 class="menu-title">Car Shop</h1>
 
         <button class="side-menu-button" onclick="openSideMenu()">
-            <img src="img/bars.svg" alt="menu">
+            <img src="img/icons/bars.svg" alt="menu">
         </button>
 
         <div class="side-menu">
             <div class="side-menu-header">
                 <button class="side-menu-close-button" onclick="closeSideMenu()">
-                    <img src="img/close.svg" alt="">
+                    <img src="img/icons/close.svg" alt="">
                 </button>
             </div>
             <ul class="side-menu-list">
                 <li class="side-menu-item">
-                    <img src="img/home.svg">
+                    <img src="img/icons/home.svg">
                     <a href="#" class="side-menu-link">Home</a>
-<!--                    <img src="img/right-arrow.svg" alt="">-->
                 </li>
                 <li class="side-menu-item">
-                    <img src="img/phone.svg">
+                    <img src="img/icons/phone.svg">
                     <a href="#" class="side-menu-link">Contact</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <section class="catalog">
+        <div class="catalog-header">
+            <h2>Vehículos disponibles</h2>
+        </div>
+
+        <div class="vehicles-card-container">
+            <div class="vehicle-card">
+                <img src="img/vehicles/chevrolet/onix.jpg" alt="">
+
+                <div class="vehicle-card-description">
+                    <h3>Chevrolet Onix</h3>
+                    <p>Año: 2019</p>
+                    <p>Kilómetros: 100.000</p>
+                    <p>Combustible: Nafta</p>
+                    <p>Precio $20.000.000</p>
+                </div>
+
+                <button class="vehicle-card-button">
+                    Consultar
+                </button>
+            </div>
+        </div>
+    </section>
 
     <script src="src/js/app.js"></script>
 </body>

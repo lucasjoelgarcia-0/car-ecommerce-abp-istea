@@ -28,6 +28,10 @@ nav {
     position: relative;
 }
 
+.menu .side-menu {
+    display: none;
+}
+
 .menu .menu-logo,
 .menu .side-menu-button {
     width: 48px;
@@ -75,6 +79,43 @@ nav {
     text-decoration: none;
     color: var(--text-color);
     font-weight: bold;
+}
+
+.catalog .catalog-header h2 {
+    text-align: center;
+    margin: 24px 24px;
+}
+
+.catalog .vehicles-card-container {
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 24px;
+    padding: 16px;
+}
+
+.vehicles-card-container .vehicle-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vehicles-card-container .vehicle-card .vehicle-card-description p {
+    margin: 8px 0;
+}
+
+.vehicles-card-container .vehicle-card .vehicle-card-button {
+    color: var(--text-color);
+    background-color: #313e72;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0 48px;
+}
+
+.catalog .vehicles-card-container .vehicle-card img {
+    width: 260px;
+    height: 100px;
 }
 
 @media (min-width: 600px) {
