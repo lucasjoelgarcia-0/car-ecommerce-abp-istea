@@ -7,58 +7,54 @@
     <link rel="stylesheet" href="src/styles/style.css">
 </head>
 <body>
-    <nav class="menu">
-        <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
+<nav class="menu">
+    <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
 
-        <h1 class="menu-title">Car Shop</h1>
+    <h1 class="menu-title">CAR SHOP</h1>
 
-        <button class="side-menu-button" onclick="openSideMenu()">
-            <img src="img/icons/bars.svg" alt="menu">
+    <button class="side-menu-button" onclick="openSideMenu()">
+        <img src="img/icons/bars.svg" alt="menu">
+    </button>
+
+    <div class="side-menu">
+        <div class="side-menu-header">
+            <button class="side-menu-close-button" onclick="closeSideMenu()">
+                <img src="img/icons/close.svg" alt="">
+            </button>
+        </div>
+        <ul class="side-menu-list">
+            <li class="side-menu-item">
+                <img src="img/icons/home.svg" alt="">
+                <a href="#" class="side-menu-link">Home</a>
+            </li>
+            <li class="side-menu-item">
+                <img src="img/icons/phone.svg" alt="">
+                <a href="#" class="side-menu-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="vehicles-brands">
+    <div class="brands-container">
+        <button class="brand-button">
+            <img src="img/icons/brands/volkswagen.svg" alt="volkswagen">
         </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/ford.svg" alt="ford">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/chevrolet.svg" alt="chevrolet">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/peugeot.svg" alt="peugeot">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/fiat.svg" alt="chevrolet">
+        </button>
+    </div>
+</section>
 
-        <div class="side-menu">
-            <div class="side-menu-header">
-                <button class="side-menu-close-button" onclick="closeSideMenu()">
-                    <img src="img/icons/close.svg" alt="">
-                </button>
-            </div>
-            <ul class="side-menu-list">
-                <li class="side-menu-item">
-                    <img src="img/icons/home.svg">
-                    <a href="#" class="side-menu-link">Home</a>
-                </li>
-                <li class="side-menu-item">
-                    <img src="img/icons/phone.svg">
-                    <a href="#" class="side-menu-link">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="catalog">
-        <div class="catalog-header">
-            <h2>Vehículos disponibles</h2>
-        </div>
-
-        <div class="vehicles-card-container">
-            <div class="vehicle-card">
-                <img src="img/vehicles/chevrolet/onix.jpg" alt="">
-
-                <div class="vehicle-card-description">
-                    <h3>Chevrolet Onix</h3>
-                    <p>Año: 2019</p>
-                    <p>Kilómetros: 100.000</p>
-                    <p>Combustible: Nafta</p>
-                    <p>Precio $20.000.000</p>
-                </div>
-
-                <button class="vehicle-card-button">
-                    Consultar
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <script src="src/js/app.js"></script>
+<script src="src/js/app.js"></script>
 </body>
 </html>
