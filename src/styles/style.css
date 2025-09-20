@@ -30,7 +30,12 @@ nav {
     position: relative;
 }
 
-/* INICIO MENU */
+/* INICIO MENU MOBILE */
+.menu .menu-items-desktop {
+    display: none;
+}
+
+
 .menu-title {
     font-size: 24px;
     font-weight: bold;
@@ -55,6 +60,8 @@ nav {
     height: 100vh;
     top: 0;
     background-color: var(--background-color);
+    display: none;
+    z-index: 1;
 }
 
 .menu .side-menu .side-menu-header {
@@ -91,7 +98,7 @@ nav {
     font-weight: bold;
 }
 
-/* FIN MENU*/
+/* FIN MENU MOBILE*/
 
 /* INICIO BOTONES MARCA */
 .vehicles-brands .brands-container {
@@ -124,7 +131,37 @@ nav {
 
 /* FIN BOTONES MARCA */
 @media (min-width: 600px) {
+    /* INICIO MENÚ DESKTOP */
     .menu .side-menu-button {
         display: none;
     }
+
+    .menu {
+        padding: 21px;
+        background-color: #2c2c2e;
+        border: none;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    .menu .menu-items-desktop {
+        display: flex;
+        gap: 24px;
+    }
+
+    .menu .menu-items-desktop .menu-item {
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-color);
+    }
+
+    .menu .menu-items-desktop .menu-item.selected {
+        color: #e0ea73;
+    }
+
+    .menu .menu-logo {
+        display: none;
+    }
+    /* FIN MENÚ DESKTOP */
 }
