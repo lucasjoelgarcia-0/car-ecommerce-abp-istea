@@ -7,35 +7,183 @@
     <link rel="stylesheet" href="src/styles/style.css">
 </head>
 <body>
-    <nav class="menu">
-        <img class="menu-logo" src="img/logo.svg" alt="logo">
+<nav class="menu">
+    <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
 
-        <h1 class="menu-title">Car Shop</h1>
+    <h1 class="menu-title">CAR SHOP</h1>
+    <div class="menu-items-desktop">
+        <a href="#" class="menu-item selected">Home</a>
+        <a href="" class="menu-item">Contact</a>
+    </div>
 
-        <button class="side-menu-button" onclick="openSideMenu()">
-            <img src="img/bars.svg" alt="menu">
-        </button>
-
-        <div class="side-menu">
-            <div class="side-menu-header">
-                <button class="side-menu-close-button" onclick="closeSideMenu()">
-                    <img src="img/close.svg" alt="">
-                </button>
-            </div>
-            <ul class="side-menu-list">
-                <li class="side-menu-item">
-                    <img src="img/home.svg">
-                    <a href="#" class="side-menu-link">Home</a>
-<!--                    <img src="img/right-arrow.svg" alt="">-->
-                </li>
-                <li class="side-menu-item">
-                    <img src="img/phone.svg">
-                    <a href="#" class="side-menu-link">Contact</a>
-                </li>
-            </ul>
+    <button class="side-menu-button" onclick="openSideMenu()">
+        <img src="img/icons/bars.svg" alt="menu">
+    </button>
+    <div class="side-menu">
+        <div class="side-menu-header">
+            <button class="side-menu-close-button" onclick="closeSideMenu()">
+                <img src="img/icons/close.svg" alt="">
+            </button>
         </div>
-    </nav>
+        <ul class="side-menu-list">
+            <li class="side-menu-item">
+                <img src="img/icons/home.svg" alt="">
+                <a href="#" class="side-menu-link">Home</a>
+            </li>
+            <li class="side-menu-item">
+                <img src="img/icons/phone.svg" alt="">
+                <a href="#" class="side-menu-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <script src="src/js/app.js"></script>
+<section class="vehicles-brands">
+    <div class="brands-container">
+        <button class="brand-button">
+            <img src="img/icons/brands/volkswagen.svg" alt="volkswagen">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/ford.svg" alt="ford">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/chevrolet.svg" alt="chevrolet">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/peugeot.svg" alt="peugeot">
+        </button>
+        <button class="brand-button">
+            <img src="img/icons/brands/fiat.svg" alt="chevrolet">
+        </button>
+    </div>
+</section>
+
+<section class="vehicles-catalog">
+    <h1>Vehículos disponibles</h1>
+    <div class="vehicles-catalog-container">
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/vw/gol.avif" alt="gol">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Volkswagen</h2>
+                <p>$20.000.000</p>
+                <p>Gol</p>
+            </div>
+        </div>
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/vw/amarok.jpg" alt="amarok">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Volkswagen</h2>
+                <p>$40.000.000</p>
+                <p>Amarok</p>
+            </div>
+        </div>
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/chevrolet/onix.jpg" alt="amarok">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Chevrolet</h2>
+                <p>$16.000.000</p>
+                <p>Onix</p>
+            </div>
+        </div>
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/fiat/cronos.jpg" alt="cronos">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Fiat</h2>
+                <p>$21.800.000</p>
+                <p>Cronos</p>
+            </div>
+        </div>
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/ford/focus.jpg" alt="focus">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Ford</h2>
+                <p>$18.000.000</p>
+                <p>Focus</p>
+            </div>
+        </div>
+        <div class="vehicle-content">
+            <a class="vehicle-card">
+                <div class="vehicle-card-header">
+                    <div class="vehicle-offer">
+                        <p>15% OF</p>
+                    </div>
+                    <button class="add-favorite-button">
+                        <img src="img/icons/heart.svg" alt="heart">
+                    </button>
+                </div>
+                <div class="vehicle-card-image">
+                    <img src="img/vehicles/peugeot/208.jpg" alt="208">
+                </div>
+            </a>
+            <div class="vehicle-info">
+                <h2>Peugeot</h2>
+                <p>$23.900.000</p>
+                <p>208</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="src/js/app.js"></script>
 </body>
 </html>

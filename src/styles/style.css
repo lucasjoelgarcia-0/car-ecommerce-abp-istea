@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,19 +7,21 @@
 
 :root {
     --text-color: #fff;
-    --background-color: #1e1e1e;
+    --background-color: #080808;
 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Roboto, sans-serif;
     color: var(--text-color);
 }
 
-body {
+html, body {
     background-color: var(--background-color);
+    overflow-x: hidden;
 }
 
 button {
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 nav {
@@ -28,11 +32,27 @@ nav {
     position: relative;
 }
 
+.menu .menu-items-desktop {
+    display: none;
+}
+
+
+.menu-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.menu .side-menu {
+    display: none;
+}
+
 .menu .menu-logo,
 .menu .side-menu-button {
-    width: 48px;
+    width: 32px;
+    height: 32px;
     filter: invert(1);
-    margin: 8px;
+    margin: 20px;
 }
 
 .menu .side-menu {
@@ -41,6 +61,8 @@ nav {
     height: 100vh;
     top: 0;
     background-color: var(--background-color);
+    display: none;
+    z-index: 1;
 }
 
 .menu .side-menu .side-menu-header {
@@ -77,8 +99,156 @@ nav {
     font-weight: bold;
 }
 
-@media (min-width: 600px) {
+
+.vehicles-brands .brands-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.vehicles-brands .brands-container .brand-button {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background-color: #1a191e;
+}
+
+.vehicles-brands .brands-container .brand-button img[alt="volkswagen"] {
+    filter: invert(1);
+}
+
+.vehicles-brands .brands-container .brand-button img[alt="peugeot"] {
+    width: 48px;
+    height: 48px;
+}
+
+.vehicles-brands .brands-container .brand-button img {
+    width: 48px;
+}
+
+.vehicles-catalog {
+    margin-top: 24px;
+}
+
+.vehicles-catalog h1 {
+    font-family: Roboto, sans-serif;
+    margin: 24px;
+    font-size: 24px;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card {
+    border: 1px solid #fff;
+    margin: 0 24px;
+    border-radius: 24px;
+    background-color: #18181c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32px;
+    cursor: pointer;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-header {
+    display: flex;
+    justify-content: space-around;
+    gap: 72px;
+    align-items: center;
+    margin: 16px;
+    width: 100%;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-header .vehicle-offer {
+    padding: 8px 12px;
+    background-color: #dfe51a;
+    color: #000000;
+    width: 72px;
+    border-radius: 12px;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-header .add-favorite-button {
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    border: #ffffff 1px solid;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-header .add-favorite-button img {
+    filter: invert(1);
+    width: 24px;
+    height: 24px;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-image img {
+    width: 280px;
+    height: 180px;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 16px;
+    width: 100%;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-info h2 {
+    color: #898585;
+}
+
+.vehicles-catalog .vehicles-catalog-container .vehicle-info p {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+@media (min-width: 780px) {
     .menu .side-menu-button {
         display: none;
+    }
+
+    .menu {
+        padding: 21px;
+        background-color: #2c2c2e;
+        border: none;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    .menu .menu-items-desktop {
+        display: flex;
+        gap: 24px;
+    }
+
+    .menu .menu-items-desktop .menu-item {
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-color);
+    }
+
+    .menu .menu-items-desktop .menu-item.selected {
+        color: #e0ea73;
+    }
+
+    .menu .menu-logo {
+        display: none;
+    }
+
+
+    .vehicles-catalog-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .vehicles-catalog-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
     }
 }
