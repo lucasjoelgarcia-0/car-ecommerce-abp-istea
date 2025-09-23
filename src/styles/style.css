@@ -40,7 +40,6 @@ nav {
 .menu-title {
     font-size: 24px;
     font-weight: bold;
-    margin-left: 8px;
 }
 
 .menu .side-menu {
@@ -56,7 +55,7 @@ nav {
 }
 
 .menu .side-menu {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -86,6 +85,10 @@ nav {
     gap: 16px;
     height: 82px;
     border-bottom: 1px solid #fff;
+}
+
+.menu .side-menu-list .side-menu-item a.selected {
+    color: #e0ea73;
 }
 
 .menu .side-menu-list .side-menu-item img {
@@ -130,6 +133,22 @@ nav {
 
 .vehicles-catalog {
     margin-top: 24px;
+}
+
+.vehicles-catalog .catalog-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 24px 24px;
+}
+
+.vehicles-catalog .catalog-header h1 {
+    margin: 0;
+}
+
+.vehicles-catalog .catalog-header .filter-button img{
+    filter: invert(1);
+    width: 24px;
+    height: 24px;
 }
 
 .vehicles-catalog h1 {
@@ -203,6 +222,9 @@ nav {
     font-weight: bold;
 }
 
+.contact-section {
+    margin: 16px;
+}
 
 @media (min-width: 780px) {
     .menu .side-menu-button {
