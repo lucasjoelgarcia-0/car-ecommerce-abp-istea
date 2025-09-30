@@ -389,3 +389,9 @@ nav {
         gap: 24px;
     }
 }
+
+@media (min-width: 1920px) {
+    .vehicles-catalog-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
