@@ -8,3 +8,7 @@ export function parseToPrice(mount) {
         currency: 'ARS'
     }).format(mount)
 }
+
+export function formatNumber(number) {
+    return new Intl.NumberFormat('es-AR').format(number);
+}
