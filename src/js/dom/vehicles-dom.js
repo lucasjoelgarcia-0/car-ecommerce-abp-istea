@@ -145,4 +145,4 @@ function redirectToWhatsAppButton(phone) {
 }
 
 
-renderVehiclesCard();
+await renderVehiclesCard();

@@ -273,6 +273,7 @@ nav {
     background-color: #2dd24d;
     color: #ffffff;
     padding: 8px;
+    text-decoration: none;
 }
 
 .vehicle-details .vehicle-detail-modal.show a img[alt="whatsapp"] {
