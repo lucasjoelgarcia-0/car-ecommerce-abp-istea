@@ -54,7 +54,7 @@ async function addVehicleCardsListeners() {
             const vehicleId = card.dataset.vehicleId;
 
             if (!vehicleDetailModal.classList.contains('show')) {
-                await setVehicleInfoInModal(vehicleId);
+                await renderVehicleInfoInModal(vehicleId);
                 const closeDetailsModalButton = document.querySelector('.vehicle-details-close-button');
                 closeDetailsModalButton.addEventListener('click', closeVehicleDetailsModal);
 
@@ -67,8 +67,9 @@ async function addVehicleCardsListeners() {
 
 }
 
-async function setVehicleInfoInModal(vehicleId) {
+async function renderVehicleInfoInModal(vehicleId) {
     const modalContent = document.querySelector('.vehicle-details-content');
+
     const {
         id,
         brand,
@@ -111,7 +112,7 @@ async function setVehicleInfoInModal(vehicleId) {
     moreElement.textContent = `Más: ${more}`;
     modalContent.appendChild(moreElement);
 
-    modalContent.innerHTML += redirectToWhatsUpButton(phone);
+    modalContent.innerHTML += redirectToWhatsAppButton(phone);
 }
 
 function closeVehicleDetailsModal() {
@@ -121,7 +122,7 @@ function closeVehicleDetailsModal() {
     // TODO: HACER QUE CUANDO SE CIERRE EL MODAL EL CONTENIDO CARGADO CON INFORMACIÓN DEL VEHÍCULO SE BORRE
 }
 
-function redirectToWhatsUpButton(phone) {
+function redirectToWhatsAppButton(phone) {
     return `<a href="https://api.whatsapp.com/send?phone=${phone}&text=Hola%20vi%20tu%20anuncio%20quiero..." class="vehicle-contact-button" target="_blank">
                 <img src="img/icons/whatsapp.svg" alt="whatsapp">
                 Consultar
