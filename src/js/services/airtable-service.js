@@ -1,4 +1,5 @@
 import {AIRTABLE_API_URL, AIRTABLE_API_TOKEN, AIRTABLE_BASE_ID} from "./airtable-envs.js";
+import {formatNumber} from "../utils/vehicle-utils.js";
 
 const AIRTABLE_TABLES = {
     brands: 'Brands',
@@ -19,12 +20,40 @@ export async function getVehiclesRecords() {
     }
 }
 
+export async function getVehicleInfoById(vehicleId) {
+    try {
+        const vehicleByIdUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}/${vehicleId}`;
+
+        const response = await fetch(vehicleByIdUrl, createInit('GET', AIRTABLE_API_TOKEN));
+        const data = await response.json();
+
+        return {
+            id: data.id,
+            brand: await getBrandById(data.fields.brand),
+            model: data.fields.model,
+            fuelType: data.fields.fuel_type,
+            color: data.fields.color,
+            transmission: data.fields.transmission,
+            engine: data.fields.engine,
+            kilometers: formatNumber(data.fields.kilometers),
+            more: data.fields.more,
+            phone: data.fields.phone
+        }
+        // return data.records;
+    } catch (error) {
+        console.error('Error al obtener vehiculo por ID desde Airtable:', error);
+        throw error;
+    }
+}
+
 export async function getBrandById(brandId) {
-    const records = await getBrandsRecords();
+    const brandByIdUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['brands']}/${brandId}`;
 
-    const record = records.find(record => record.id === brandId);
+    const response = await fetch(brandByIdUrl, createInit('GET', AIRTABLE_API_TOKEN));
 
-    return record.fields.brand;
+    const data = await response.json();
+
+    return data.fields.brand;
 }
 
 async function getBrandsRecords() {
