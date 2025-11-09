@@ -54,13 +54,15 @@ async function addVehicleCardsListeners() {
             const vehicleId = card.dataset.vehicleId;
 
             if (!vehicleDetailModal.classList.contains('show')) {
-                await renderVehicleInfoInModal(vehicleId);
-                const closeDetailsModalButton = document.querySelector('.vehicle-details-close-button');
-                closeDetailsModalButton.addEventListener('click', closeVehicleDetailsModal);
-
                 vehicleDetailModal.classList.add('show');
                 vehicleDetailModal.style.display = 'block';
                 document.documentElement.style.overflowY = 'hidden';
+
+                await renderVehicleInfoInModal(vehicleId);
+
+                const closeDetailsModalButton = document.querySelector('.vehicle-details-close-button');
+                closeDetailsModalButton.addEventListener('click', closeVehicleDetailsModal);
+
             }
         });
     })
@@ -82,6 +84,8 @@ async function renderVehicleInfoInModal(vehicleId) {
         more,
         phone
     } = await getVehicleInfoById(vehicleId);
+
+    modalContent.innerHTML = renderVehicleModalCloseButton();
 
     const modalHeader = document.createElement('h2');
     const fuelTypeElement = document.createElement('p');
@@ -115,11 +119,22 @@ async function renderVehicleInfoInModal(vehicleId) {
     modalContent.innerHTML += redirectToWhatsAppButton(phone);
 }
 
+function renderVehicleModalCloseButton() {
+    return `<button class="vehicle-details-close-button">
+                    <img src="img/icons/close.svg" alt="close">
+                </button>`
+}
+
 function closeVehicleDetailsModal() {
+    const modalContent = document.querySelector('.vehicle-details-content');
+
     vehicleDetailModal.style.display = 'none';
     vehicleDetailModal.classList.remove('show');
     document.documentElement.style.overflowY = 'auto';
-    // TODO: HACER QUE CUANDO SE CIERRE EL MODAL EL CONTENIDO CARGADO CON INFORMACIÓN DEL VEHÍCULO SE BORRE
+
+    while (modalContent.firstChild) {
+        modalContent.removeChild(modalContent.firstChild);
+    }
 }
 
 function redirectToWhatsAppButton(phone) {
