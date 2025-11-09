@@ -265,7 +265,7 @@ nav {
     right: 0;
 }
 
-.vehicle-details .vehicle-detail-modal.show button.vehicle-contact-button {
+.vehicle-details .vehicle-detail-modal.show a.vehicle-contact-button {
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -273,9 +273,10 @@ nav {
     background-color: #2dd24d;
     color: #ffffff;
     padding: 8px;
+    text-decoration: none;
 }
 
-.vehicle-details .vehicle-detail-modal.show button img[alt="whatsapp"] {
+.vehicle-details .vehicle-detail-modal.show a img[alt="whatsapp"] {
     filter: invert(1);
     width: 24px;
     height: 24px;
