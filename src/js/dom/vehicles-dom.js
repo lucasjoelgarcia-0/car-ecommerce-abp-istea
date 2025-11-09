@@ -1,14 +1,15 @@
 import {getBrandById, getVehicleInfoById, getVehiclesRecords} from "../services/airtable-service.js";
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
+import {states} from "./states.js";
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
 
 async function renderVehiclesCard() {
     const records = await getVehiclesRecords();
-    const vehicles = records.map(vehicle => vehicle);
+    states.vehicles = records.map(vehicle => vehicle);
 
-    for (const vehicle of vehicles) {
+    for (const vehicle of states.vehicles) {
         vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
     }
 
