@@ -2,7 +2,6 @@ import {getBrandById, getVehiclesRecords} from "../services/airtable-service.js"
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
-const vehicleCards = document.querySelectorAll('.vehicle-card');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
 const closeDetailsModalButton = document.querySelector('.vehicle-details-close-button');
 
@@ -14,6 +13,7 @@ async function renderVehiclesCard() {
     for (const vehicle of vehicles) {
         vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
     }
+    addVehicleCardsListeners();
 }
 
 async function createVehicleBrand(vehicle) {
@@ -45,17 +45,21 @@ async function createVehicleBrand(vehicle) {
             </div>`;
 }
 
-vehicleCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-        console.log('clicked', card);
+function addVehicleCardsListeners() {
+    const vehicleCards = document.querySelectorAll('.vehicle-card');
+    vehicleCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            console.log('clicked', card);
 
-        if (!vehicleDetailModal.classList.contains('show')) {
-            vehicleDetailModal.classList.add('show');
-            vehicleDetailModal.style.display = 'block';
-            document.documentElement.style.overflowY = 'hidden';
-        }
-    });
-})
+            if (!vehicleDetailModal.classList.contains('show')) {
+                vehicleDetailModal.classList.add('show');
+                vehicleDetailModal.style.display = 'block';
+                document.documentElement.style.overflowY = 'hidden';
+            }
+        });
+    })
+
+}
 
 closeDetailsModalButton.addEventListener('click', closeVehicleDetailsModal);
 
