@@ -118,6 +118,10 @@ nav {
     background-color: #1a191e;
 }
 
+.vehicles-brands .brands-container .brand-button.active {
+    border: 2px solid #e0ea73;
+}
+
 .vehicles-brands .brands-container .brand-button img[alt="volkswagen"] {
     filter: invert(1);
 }

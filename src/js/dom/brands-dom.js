@@ -1,6 +1,10 @@
-import {filterVehiclesByBrand} from "./filters-dom.js";
-import {states} from "./states.js";
 import {getBrandById, getBrandsRecords} from "../services/airtable-service.js";
+
+async function init() {
+    await renderBrandsButtons();
+    await brandButtonListeners();
+    activeSelectedBrand();
+}
 
 async function renderBrandsButtons() {
     const brands = await getBrandsRecords();
@@ -31,5 +35,18 @@ async function setBrandParam(brandId) {
     window.location.href = `?brand=${brandName.toLowerCase()}`;
 }
 
-await renderBrandsButtons();
-brandButtonListeners();
+function activeSelectedBrand() {
+    const getParams = new URLSearchParams(window.location.search);
+    const brandParam = getParams.get('brand');
+    const brandButtons = document.querySelectorAll('.brand-button');
+
+    brandButtons.forEach(async button => {
+        const brandName = await getBrandById(button.dataset.brand);
+
+        if (brandName.toLowerCase() === brandParam) {
+            button.classList.add('active');
+        }
+    });
+}
+
+await init();
