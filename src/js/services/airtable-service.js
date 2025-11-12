@@ -56,7 +56,7 @@ export async function getBrandById(brandId) {
     return data.fields.brand;
 }
 
-async function getBrandsRecords() {
+export async function getBrandsRecords() {
     try {
         const brandsUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['brands']}`;
 

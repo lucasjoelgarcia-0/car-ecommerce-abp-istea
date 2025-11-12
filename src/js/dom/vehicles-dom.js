@@ -1,14 +1,59 @@
-import {getBrandById, getVehicleInfoById, getVehiclesRecords} from "../services/airtable-service.js";
+import {getBrandById, getBrandsRecords, getVehicleInfoById, getVehiclesRecords} from "../services/airtable-service.js";
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
+import {states} from "./states.js";
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
 
-async function renderVehiclesCard() {
+async function init() {
     const records = await getVehiclesRecords();
     const vehicles = records.map(vehicle => vehicle);
+    setVehicles(vehicles);
 
-    for (const vehicle of vehicles) {
+    const getParams = new URLSearchParams(window.location.search);
+    const hasBrandParam = getParams.has('brand');
+
+    if (!hasBrandParam) {
+        await renderVehiclesCard();
+    } else {
+        const brand = getParams.get('brand');
+        await renderVehiclesCardByBrand(brand);
+    }
+}
+
+function setVehicles(vehicles) {
+    states.vehicles = vehicles;
+}
+
+async function renderVehiclesCard() {
+    for (const vehicle of states.vehicles) {
+        vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+    }
+
+    await addVehicleCardsListeners();
+}
+
+async function renderVehiclesCardByBrand(brand) {
+    const brandsRecords = await getBrandsRecords();
+    const brands = brandsRecords.map(brand => brand.fields.brand.toLowerCase());
+
+    if (!brands.includes(brand)) {
+        console.error('La marca seleccionada no existe');
+        return;
+    }
+
+
+    const vehicleByBrand = (
+        await Promise.all(
+            states.vehicles.map(async (vehicle) => {
+                const brandName = await getBrandById(vehicle.fields.brand[0]);
+                return brandName.toLowerCase() === brand ? vehicle : null;
+            })
+        )
+    ).filter(Boolean);
+
+
+    for (const vehicle of vehicleByBrand) {
         vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
     }
 
@@ -144,5 +189,4 @@ function redirectToWhatsAppButton(phone) {
             </a>`
 }
 
-
-await renderVehiclesCard();
+await init();
