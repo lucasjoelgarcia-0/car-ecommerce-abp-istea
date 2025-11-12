@@ -1,6 +1,6 @@
 import {filterVehiclesByBrand} from "./filters-dom.js";
 import {states} from "./states.js";
-import {getBrandsRecords} from "../services/airtable-service.js";
+import {getBrandById, getBrandsRecords} from "../services/airtable-service.js";
 
 async function renderBrandsButtons() {
     const brands = await getBrandsRecords();
@@ -21,12 +21,13 @@ function createBrandButton(id, brand) {
 function brandButtonListeners() {
     const brandButtons = document.querySelectorAll('.brand-button');
     brandButtons.forEach(button => button.addEventListener('click', (e) => {
-        filterVehiclesByBrand(states.vehicles, e.currentTarget.dataset.brand);
+        setBrandParam(e.currentTarget.dataset.brand);
     }))
 }
 
-function filterByBrand(brand) {
-    console.log('Se va a filtrar por la marca', brand);
+async function setBrandParam(brandId) {
+    const brandName = await getBrandById(brandId);
+    window.location.href = `?brand=${brandName.toLowerCase()}`;
 }
 
 await renderBrandsButtons();
