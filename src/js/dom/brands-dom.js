@@ -20,8 +20,9 @@ function createBrandButton(id, brand) {
 
 function brandButtonListeners() {
     const brandButtons = document.querySelectorAll('.brand-button');
-    brandButtons.forEach(button => button.addEventListener('click', (e) => {
-        setBrandParam(e.currentTarget.dataset.brand);
+
+    brandButtons.forEach(async button => button.addEventListener('click', async (e) => {
+        await setBrandParam(e.currentTarget.dataset.brand);
     }))
 }
 
