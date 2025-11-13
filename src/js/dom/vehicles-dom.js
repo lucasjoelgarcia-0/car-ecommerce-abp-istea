@@ -50,19 +50,10 @@ async function renderVehiclesCardByBrand(brand) {
         return;
     }
 
-
-    const vehicleByBrand = (
-        await Promise.all(
-            states.vehicles.map(async (vehicle) => {
-                const brandName = await getBrandById(vehicle.fields.brand[0]);
-                return brandName.toLowerCase() === brand ? vehicle : null;
-            })
-        )
-    ).filter(Boolean);
-
-
-    for (const vehicle of vehicleByBrand) {
-        vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+    for (const vehicle of states.vehicles) {
+        if (vehicle.brand.toLowerCase() === brand) {
+            vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+        }
     }
 
     await addVehicleCardsListeners();
