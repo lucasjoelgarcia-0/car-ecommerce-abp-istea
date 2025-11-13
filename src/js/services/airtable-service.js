@@ -1,4 +1,4 @@
-import {AIRTABLE_API_URL, AIRTABLE_API_TOKEN, AIRTABLE_BASE_ID} from "./airtable-envs.js";
+import {AIRTABLE_API_TOKEN, AIRTABLE_API_URL, AIRTABLE_BASE_ID} from "./airtable-envs.js";
 import {formatNumber} from "../utils/vehicle-utils.js";
 
 const AIRTABLE_TABLES = {
@@ -6,14 +6,35 @@ const AIRTABLE_TABLES = {
     vehicles: 'Vehicles'
 }
 
-export async function getVehiclesRecords() {
+export async function getVehicles() {
     try {
         const vehiclesUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}`;
 
         const response = await fetch(vehiclesUrl, createInit('GET', AIRTABLE_API_TOKEN));
         const data = await response.json();
+        const records = data.records.map(vehicle => vehicle);
 
-        return data.records;
+        console.log('records', records);
+
+        return await Promise.all(
+            records.map(async (vehicle) => {
+                return {
+                    id: vehicle.id, // ojo, acá también tenías un error: usabas `records.id`
+                    brand: await getBrandById(vehicle.fields.brand[0]),
+                    color: vehicle.fields.color,
+                    engine: vehicle.fields.engine,
+                    fuelType: vehicle.fields.fuel_type,
+                    kilometers: vehicle.fields.kilometers,
+                    model: vehicle.fields.model,
+                    more: vehicle.fields.more,
+                    offer: vehicle.fields.offer,
+                    phone: vehicle.fields.phone,
+                    photoUrl: vehicle.fields.photo_url,
+                    price: vehicle.fields.price,
+                    transmission: vehicle.fields.transmission,
+                };
+            })
+        );
     } catch (error) {
         console.error('Error al obtener vehiculos desde Airtable:', error);
         throw error;

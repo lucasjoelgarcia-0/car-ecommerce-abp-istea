@@ -149,7 +149,7 @@ nav {
     margin: 0;
 }
 
-.vehicles-catalog .catalog-header .filter-button img{
+.vehicles-catalog .catalog-header .search-button img{
     filter: invert(1);
     width: 24px;
     height: 24px;

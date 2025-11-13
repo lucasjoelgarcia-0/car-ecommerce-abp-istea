@@ -1,14 +1,22 @@
-import {getBrandById, getBrandsRecords, getVehicleInfoById, getVehiclesRecords} from "../services/airtable-service.js";
+import {
+    getBrandById,
+    getBrandsRecords,
+    getVehicleInfoById,
+    getVehicles,
+} from "../services/airtable-service.js";
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
 import {states} from "./states.js";
+import {searchVehicleService} from "../services/search-service.js";
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
 
 async function init() {
-    const records = await getVehiclesRecords();
-    const vehicles = records.map(vehicle => vehicle);
+    addInputEventListenerInSearchBar();
+
+    const vehicles = await getVehicles();
     setVehicles(vehicles);
+    console.log('vehicles', vehicles);
 
     const getParams = new URLSearchParams(window.location.search);
     const hasBrandParam = getParams.has('brand');
@@ -62,11 +70,11 @@ async function renderVehiclesCardByBrand(brand) {
 
 async function createVehicleBrand(vehicle) {
     const id = vehicle.id;
-    const brand = await getBrandById(vehicle.fields.brand[0])
-    const offer = parseToPercent(vehicle.fields.offer);
-    const photoUrl = vehicle.fields.photo_url;
-    const model = vehicle.fields.model;
-    const price = parseToPrice(vehicle.fields.price);
+    const brand = vehicle.brand;
+    const offer = parseToPercent(vehicle.offer);
+    const photoUrl = vehicle.photoUrl;
+    const model = vehicle.model;
+    const price = parseToPrice(vehicle.price);
 
     return `<div class="vehicle-content">
                 <a class="vehicle-card" data-vehicle-id="${id}">
@@ -187,6 +195,24 @@ function redirectToWhatsAppButton(phone) {
                 <img src="img/icons/whatsapp.svg" alt="whatsapp">
                 Consultar
             </a>`
+}
+
+function addInputEventListenerInSearchBar() {
+    const inputSearch = document.querySelector('.input-search-vehicle');
+    inputSearch.addEventListener('change', (e) => {
+        searchVehicleByTerms(e.target.value);
+    })
+}
+
+function searchVehicleByTerms(terms = []) {
+    if (terms.length < 0) {
+        return;
+    }
+
+    const termsArray = terms.split(' ');
+
+    const vehicles = searchVehicleService(states.vehicles, termsArray);
+    console.log('vehicles from service', vehicles);
 }
 
 await init();
