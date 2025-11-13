@@ -199,12 +199,12 @@ function redirectToWhatsAppButton(phone) {
 
 function addInputEventListenerInSearchBar() {
     const inputSearch = document.querySelector('.input-search-vehicle');
-    inputSearch.addEventListener('change', (e) => {
-        searchVehicleByTerms(e.target.value);
+    inputSearch.addEventListener('change', async (e) => {
+        await searchVehicleByTerms(e.target.value);
     })
 }
 
-function searchVehicleByTerms(terms = []) {
+async function searchVehicleByTerms(terms = []) {
     if (terms.length < 0) {
         return;
     }
@@ -212,7 +212,16 @@ function searchVehicleByTerms(terms = []) {
     const termsArray = terms.split(' ');
 
     const vehicles = searchVehicleService(states.vehicles, termsArray);
-    console.log('vehicles from service', vehicles);
+
+    if (vehicles.length === 0) {
+        console.error('No se encontró ningun vehículo con los términos de búsqueda: ', termsArray);
+        return;
+    }
+
+    vehiclesCatalogContainer.innerHTML = '';
+    for (const vehicle of vehicles) {
+        vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+    }
 }
 
 await init();
