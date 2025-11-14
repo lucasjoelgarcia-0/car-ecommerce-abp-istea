@@ -1,5 +1,4 @@
 import {
-    getBrandById,
     getBrandsRecords,
     getVehicleInfoById,
     getVehicles,
@@ -7,6 +6,9 @@ import {
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
 import {states} from "./states.js";
 import {searchVehicleService} from "../services/search-service.js";
+
+import {addFavorites, getFavorites, removeFavorites} from "../services/favorites-service.js";
+
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
@@ -27,6 +29,9 @@ async function init() {
         const brand = getParams.get('brand');
         await renderVehiclesCardByBrand(brand);
     }
+
+    markFavoriteCards();
+    favoriteButtonListeners();
 }
 
 function setVehicles(vehicles) {
@@ -87,6 +92,58 @@ async function createVehicleBrand(vehicle) {
                     <p>${model}</p>
                 </div>
             </div>`;
+}
+
+function favoriteButtonListeners() {
+    const favoriteButtons = document.querySelectorAll('.add-favorite-button');
+
+    favoriteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            const card = e.currentTarget.closest('.vehicle-card');
+            const id = card.dataset.vehicleId;
+            const isActive = button.classList.contains('active');
+
+            if (isActive) {
+                removeFavorites(id);
+                button.classList.remove('active');
+                toggleFavoriteButton(button, false);
+            } else {
+                addFavorites(id);
+                button.classList.add('active');
+                toggleFavoriteButton(button, true);
+            }
+        });
+    });
+}
+
+function markFavoriteCards() {
+    const favoriteIds = getFavorites();
+    const cards = document.querySelectorAll('.vehicle-card');
+
+    cards.forEach(card => {
+        const button = card.querySelector('.add-favorite-button');
+        const id = card.dataset.vehicleId;
+
+        if (favoriteIds.includes(id)) {
+            button.classList.add('active');
+            toggleFavoriteButton(button, true);
+        } else {
+            button.classList.remove('active');
+            toggleFavoriteButton(button, false);
+        }
+    });
+}
+
+
+function toggleFavoriteButton(button, isFavorite) {
+    const img = button.querySelector('img');
+
+    img.src = isFavorite
+        ? 'img/icons/heart-solid-full.svg'
+        : 'img/icons/heart.svg';
 }
 
 async function addVehicleCardsListeners() {
