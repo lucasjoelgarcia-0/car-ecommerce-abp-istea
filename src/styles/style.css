@@ -8,6 +8,7 @@
 :root {
     --text-color: #fff;
     --background-color: #080808;
+    -webkit-tap-highlight-color: transparent;
 
     font-family: Roboto, sans-serif;
     color: var(--text-color);
@@ -149,7 +150,7 @@ nav {
     margin: 0;
 }
 
-.vehicles-catalog .catalog-header .filter-button img{
+.vehicles-catalog .catalog-header .search-button img{
     filter: invert(1);
     width: 24px;
     height: 24px;
@@ -188,6 +189,15 @@ nav {
     color: #000000;
     width: 72px;
     border-radius: 12px;
+}
+
+.add-favorite-button {
+    pointer-events: auto;
+    position: relative;
+}
+
+.add-favorite-button img {
+    pointer-events: none;
 }
 
 .vehicles-catalog .vehicles-catalog-container .vehicle-card .vehicle-card-header .add-favorite-button {

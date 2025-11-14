@@ -26,6 +26,12 @@ function brandButtonListeners() {
     const brandButtons = document.querySelectorAll('.brand-button');
 
     brandButtons.forEach(async button => button.addEventListener('click', async (e) => {
+        if (e.currentTarget.classList.contains('active')) {
+            e.currentTarget.classList.remove('active');
+            window.location.href = 'index.html';
+
+            return;
+        }
         await setBrandParam(e.currentTarget.dataset.brand);
     }))
 }

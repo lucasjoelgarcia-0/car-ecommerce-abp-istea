@@ -1,14 +1,24 @@
-import {getBrandById, getBrandsRecords, getVehicleInfoById, getVehiclesRecords} from "../services/airtable-service.js";
+import {
+    getBrandsRecords,
+    getVehicleInfoById,
+    getVehicles,
+} from "../services/airtable-service.js";
 import {parseToPercent, parseToPrice} from "../utils/vehicle-utils.js";
 import {states} from "./states.js";
+import {searchVehicleService} from "../services/search-service.js";
+
+import {addFavorites, getFavorites, removeFavorites} from "../services/favorites-service.js";
+
 
 const vehiclesCatalogContainer = document.querySelector('.vehicles-catalog-container');
 const vehicleDetailModal = document.querySelector('section.vehicle-details .vehicle-detail-modal');
 
 async function init() {
-    const records = await getVehiclesRecords();
-    const vehicles = records.map(vehicle => vehicle);
+    addInputEventListenerInSearchBar();
+
+    const vehicles = await getVehicles();
     setVehicles(vehicles);
+    console.log('vehicles', vehicles);
 
     const getParams = new URLSearchParams(window.location.search);
     const hasBrandParam = getParams.has('brand');
@@ -19,6 +29,9 @@ async function init() {
         const brand = getParams.get('brand');
         await renderVehiclesCardByBrand(brand);
     }
+
+    markFavoriteCards();
+    favoriteButtonListeners();
 }
 
 function setVehicles(vehicles) {
@@ -42,19 +55,10 @@ async function renderVehiclesCardByBrand(brand) {
         return;
     }
 
-
-    const vehicleByBrand = (
-        await Promise.all(
-            states.vehicles.map(async (vehicle) => {
-                const brandName = await getBrandById(vehicle.fields.brand[0]);
-                return brandName.toLowerCase() === brand ? vehicle : null;
-            })
-        )
-    ).filter(Boolean);
-
-
-    for (const vehicle of vehicleByBrand) {
-        vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+    for (const vehicle of states.vehicles) {
+        if (vehicle.brand.toLowerCase() === brand) {
+            vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+        }
     }
 
     await addVehicleCardsListeners();
@@ -62,11 +66,11 @@ async function renderVehiclesCardByBrand(brand) {
 
 async function createVehicleBrand(vehicle) {
     const id = vehicle.id;
-    const brand = await getBrandById(vehicle.fields.brand[0])
-    const offer = parseToPercent(vehicle.fields.offer);
-    const photoUrl = vehicle.fields.photo_url;
-    const model = vehicle.fields.model;
-    const price = parseToPrice(vehicle.fields.price);
+    const brand = vehicle.brand;
+    const offer = parseToPercent(vehicle.offer);
+    const photoUrl = vehicle.photoUrl;
+    const model = vehicle.model;
+    const price = parseToPrice(vehicle.price);
 
     return `<div class="vehicle-content">
                 <a class="vehicle-card" data-vehicle-id="${id}">
@@ -88,6 +92,58 @@ async function createVehicleBrand(vehicle) {
                     <p>${model}</p>
                 </div>
             </div>`;
+}
+
+function favoriteButtonListeners() {
+    const favoriteButtons = document.querySelectorAll('.add-favorite-button');
+
+    favoriteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            const card = e.currentTarget.closest('.vehicle-card');
+            const id = card.dataset.vehicleId;
+            const isActive = button.classList.contains('active');
+
+            if (isActive) {
+                removeFavorites(id);
+                button.classList.remove('active');
+                toggleFavoriteButton(button, false);
+            } else {
+                addFavorites(id);
+                button.classList.add('active');
+                toggleFavoriteButton(button, true);
+            }
+        });
+    });
+}
+
+function markFavoriteCards() {
+    const favoriteIds = getFavorites();
+    const cards = document.querySelectorAll('.vehicle-card');
+
+    cards.forEach(card => {
+        const button = card.querySelector('.add-favorite-button');
+        const id = card.dataset.vehicleId;
+
+        if (favoriteIds.includes(id)) {
+            button.classList.add('active');
+            toggleFavoriteButton(button, true);
+        } else {
+            button.classList.remove('active');
+            toggleFavoriteButton(button, false);
+        }
+    });
+}
+
+
+function toggleFavoriteButton(button, isFavorite) {
+    const img = button.querySelector('img');
+
+    img.src = isFavorite
+        ? 'img/icons/heart-solid-full.svg'
+        : 'img/icons/heart.svg';
 }
 
 async function addVehicleCardsListeners() {
@@ -187,6 +243,33 @@ function redirectToWhatsAppButton(phone) {
                 <img src="img/icons/whatsapp.svg" alt="whatsapp">
                 Consultar
             </a>`
+}
+
+function addInputEventListenerInSearchBar() {
+    const inputSearch = document.querySelector('.input-search-vehicle');
+    inputSearch.addEventListener('change', async (e) => {
+        await searchVehicleByTerms(e.target.value);
+    })
+}
+
+async function searchVehicleByTerms(terms = []) {
+    if (terms.length < 0) {
+        return;
+    }
+
+    const termsArray = terms.split(' ');
+
+    const vehicles = searchVehicleService(states.vehicles, termsArray);
+
+    if (vehicles.length === 0) {
+        console.error('No se encontró ningun vehículo con los términos de búsqueda: ', termsArray);
+        return;
+    }
+
+    vehiclesCatalogContainer.innerHTML = '';
+    for (const vehicle of vehicles) {
+        vehiclesCatalogContainer.innerHTML += await createVehicleBrand(vehicle);
+    }
 }
 
 await init();
