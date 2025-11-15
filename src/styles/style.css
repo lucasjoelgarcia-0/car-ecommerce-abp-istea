@@ -397,6 +397,32 @@ nav {
     }
 }
 
+.vehicle-fav-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.favs-section .favs-card-container .vehicle-fav-card img {
+    width: 120px;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+.vehicle-in-fav-info {
+    display: flex;
+    gap: 12px;
+    margin: 12px;
+}
+
+.favs-section .favs-card-container .vehicle-fav-card .remove-fav-button img {
+    width: 24px;
+    height: 24px;
+    justify-content: right;
+    filter: invert(1);
+}
+
 @media (min-width: 1024px) {
     .vehicles-catalog-container {
         display: grid;
