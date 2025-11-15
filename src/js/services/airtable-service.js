@@ -3,7 +3,8 @@ import {formatNumber} from "../utils/vehicle-utils.js";
 
 const AIRTABLE_TABLES = {
     brands: 'Brands',
-    vehicles: 'Vehicles'
+    vehicles: 'Vehicles',
+    contacts: 'Contacts'
 }
 
 export async function getVehicles() {
@@ -19,7 +20,7 @@ export async function getVehicles() {
         return await Promise.all(
             records.map(async (vehicle) => {
                 return {
-                    id: vehicle.id, // ojo, acá también tenías un error: usabas `records.id`
+                    id: vehicle.id,
                     brand: await getBrandById(vehicle.fields.brand[0]),
                     color: vehicle.fields.color,
                     engine: vehicle.fields.engine,
@@ -60,7 +61,6 @@ export async function getVehicleInfoById(vehicleId) {
             more: data.fields.more,
             phone: data.fields.phone
         }
-        // return data.records;
     } catch (error) {
         console.error('Error al obtener vehiculo por ID desde Airtable:', error);
         throw error;
@@ -92,12 +92,42 @@ export async function getBrandsRecords() {
     }
 }
 
-function createInit(method, token) {
+export async function sendContactInfo(name, surname, email, message) {
+    const contactTableUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['contacts']}`;
+
+    const data = {
+        records: [
+            {
+                fields: {
+                    name,
+                    surname,
+                    email,
+                    message
+                }
+            }
+        ],
+    };
+
+    console.log("DATA AIRTABLE: ", data);
+
+    try {
+        const response = await fetch(contactTableUrl, createInit('POST', AIRTABLE_API_TOKEN, JSON.stringify(data)));
+
+        const result = await response.json();
+        console.log('RESULT INSERT', result);
+
+    } catch (err) {
+        console.error('Error al intentar insertar contactos', err);
+    }
+}
+
+function createInit(method, token, body) {
     return {
-        method: 'GET',
+        method: method,
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
-        }
+        },
+        body: body !== null ? body : null
     }
 }

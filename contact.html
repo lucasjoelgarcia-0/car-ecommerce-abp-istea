@@ -45,7 +45,7 @@
 
 <section class="contact-section">
     <h1>Contact Us</h1>
-    <form action="" class="contact-form">
+    <form action="" class="contact-form" method="post">
         <label for="name">Name</label>
         <input id="name" type="text">
 
@@ -57,11 +57,13 @@
 
         <label for="message">Message</label>
         <input id="message" type="text">
+
+        <button class="contact-button" type="submit">Submit</button>
     </form>
 
-    <button class="contact-button">Submit</button>
 </section>
 
+<script type="module" src="src/js/dom/contacts-dom.js"></script>
 <script src="src/js/dom/navigation-dom.js"></script>
 </body>
 </html>
