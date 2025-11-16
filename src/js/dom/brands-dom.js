@@ -17,7 +17,7 @@ async function renderBrandsButtons() {
 function createBrandButton(id, brand) {
     return `
         <button class="brand-button" data-brand="${id}">
-            <img src="img/icons/brands/${brand}.svg" alt="${brand}">
+            <img src="img/icons/brands/${brand.toLowerCase()}.svg" alt="${brand}">
         </button>
     `
 }
