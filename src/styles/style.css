@@ -431,6 +431,7 @@ nav {
     border-radius: 24px;
     padding: 16px;
     margin: 24px 24px;
+    max-width: 280px;
 }
 
 .message-card-content {
