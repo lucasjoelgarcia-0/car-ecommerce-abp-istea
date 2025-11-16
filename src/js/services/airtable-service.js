@@ -92,6 +92,29 @@ export async function getBrandsRecords() {
     }
 }
 
+export async function getContacts() {
+    try {
+        const contactTableUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['contacts']}`;
+
+        const response = await fetch(contactTableUrl, createInit('GET', AIRTABLE_API_TOKEN));
+
+        const data = await response.json();
+
+        return data.records;
+    } catch (error) {
+        console.error('Error al obtener contactos desde Airtable:', error);
+        throw error;
+    }
+}
+
+export async function deleteContactById(contactId) {
+    const contactTableUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['contacts']}/${contactId}`;
+
+    const response = await fetch(contactTableUrl, createInit('delete', AIRTABLE_API_TOKEN));
+
+    return await response.json();
+}
+
 export async function sendContactInfo(name, surname, email, message) {
     const contactTableUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['contacts']}`;
 
@@ -120,6 +143,7 @@ export async function sendContactInfo(name, surname, email, message) {
         console.error('Error al intentar insertar contactos', err);
     }
 }
+
 
 function createInit(method, token, body) {
     return {

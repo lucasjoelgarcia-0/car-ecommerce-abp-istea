@@ -14,8 +14,8 @@
     <div class="menu-items-desktop">
         <a href="index.html" class="menu-item">Home</a>
         <a href="contact.html" class="menu-item">Contact</a>
-        <a href="favs.html" class="menu-item selected">Favorites</a>
-        <a href="admin.html" class="menu-item">Admin</a>
+        <a href="#" class="menu-item selected">Admin</a>
+        <a href="favs.html" class="menu-item">Favorites</a>
     </div>
 
     <button class="side-menu-button" onclick="openSideMenu()">
@@ -38,22 +38,24 @@
             </li>
             <li class="side-menu-item">
                 <img src="img/icons/phone.svg" alt="">
-                <a href="#" class="side-menu-link selected">Favorites</a>
+                <a href="favs.html" class="side-menu-link">Favorites</a>
             </li>
             <li class="side-menu-item">
                 <img src="img/icons/phone.svg" alt="">
-                <a href="#" class="side-menu-link">Admin</a>
+                <a href="admin.html" class="side-menu-link selected">Admin</a>
             </li>
         </ul>
     </div>
 </nav>
 
-<section class="favs-section">
-    <div class="favs-card-container">
+<section class="admin-section">
+    <h1>Admin</h1>
+
+    <div class="contacts-messages">
     </div>
 </section>
 
+<script type="module" src="src/js/dom/admin-dom.js"></script>
 <script src="src/js/dom/navigation-dom.js"></script>
-<script type="module" src="src/js/dom/favs-dom.js"></script>
 </body>
 </html>

@@ -416,11 +416,54 @@ nav {
     margin: 12px;
 }
 
-.favs-section .favs-card-container .vehicle-fav-card .remove-fav-button img {
+.favs-section .favs-card-container .vehicle-fav-card .remove-fav-button {
     width: 24px;
     height: 24px;
     justify-content: right;
     filter: invert(1);
+}
+
+.admin-section h1 {
+    margin: 24px;
+}
+
+.contacts-messages .message-card {
+    border: 1px solid #fff;
+    border-radius: 24px;
+    padding: 16px;
+    margin: 24px 24px;
+}
+
+.message-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/*.message-card-user-info {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+.contacts-messages .delete-message-button {
+    background-color: brown;
+    margin: 8px;
+    align-self: center;
+    width: 120px;
+    border-radius: 8px;
+    height: 24px;
+}
+
+.delete-message-button img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.message-card-buttton-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
 }
 
 @media (min-width: 1024px) {
