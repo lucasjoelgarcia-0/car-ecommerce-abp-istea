@@ -401,7 +401,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 400px;
 }
 
 .favs-section .favs-card-container .vehicle-fav-card img {
@@ -416,10 +416,9 @@ nav {
     margin: 12px;
 }
 
-.favs-section .favs-card-container .vehicle-fav-card .remove-fav-button {
+.favs-section .favs-card-container .vehicle-fav-card .remove-fav-button img {
     width: 24px;
     height: 24px;
-    justify-content: right;
     filter: invert(1);
 }
 
