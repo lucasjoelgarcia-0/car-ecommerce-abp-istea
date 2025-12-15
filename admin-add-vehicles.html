@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ecommerce ABP</title>
+    <link rel="stylesheet" href="src/styles/style.css">
+</head>
+<body>
+<nav class="menu">
+    <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
+
+    <!--  <h1 class="menu-title">CAR SHOP</h1>-->
+    <div class="menu-items-desktop">
+    </div>
+</nav>
+
+<h2 class="admin-header">Administrar vehículos</h2>
+
+<section class="admin-vehicles-section">
+    <form action="" class="vehicle-form" method="post">
+
+        <div class="selects-container">
+            <div class="form-item">
+                <label for="brand">Marca</label>
+                <select name="brand" id="brand">
+                    <option value="recGh7xn8rlVGLIIv">Fiat</option>
+                    <option value="recMPlCZccgt8GtYl">Volkswagen</option>
+                    <option value="recU5iTfnusQ95vgO">Ford</option>
+                    <option value="recXcQ8NX8KoevynM">Chevrolet</option>
+                    <option value="recoo8k7eZqo6WVDs">Peugeot</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label for="transmission">Transmisión</label>
+                <select name="transmission" id="transmission">
+                    <option value="automatic">Automática</option>
+                    <option value="manual">Manual</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label for="engine">Motor</label>
+                <select name="engine" id="engine">
+                    <option value="1.0">1.0</option>
+                    <option value="1.4">1.4</option>
+                    <option value="1.6">1.6</option>
+                    <option value="1.8">1.8</option>
+                    <option value="2.0">2.0</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <label for="offer">Oferta</label>
+                <select name="offer" id="offer">
+                    <option value="0.5">5%</option>
+                    <option value="0.10">10%</option>
+                    <option value="0.15">15%</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label for="fuel_type">Combustible</label>
+                <select name="fuel_type" id="fuel_type">
+                    <option value="Nafta">Nafta</option>
+                    <option value="Gasoil">Gasoil</option>
+                    <option value="GNC">GNC</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="inputs-container">
+            <div class="form-item">
+                <label for="model">Model</label>
+                <input id="model" type="text">
+            </div>
+
+<!--            <div class="form-item">-->
+<!--                <label for="fuel_type">Combustible</label>-->
+<!--                <input id="fuel_type" type="text">-->
+<!--            </div>-->
+
+            <div class="form-item">
+                <label for="price">Precio</label>
+                <input id="price" type="text">
+            </div>
+
+            <div class="form-item">
+                <label for="color">Color</label>
+                <input id="color" type="text">
+            </div>
+
+            <div class="form-item">
+                <label for="kilometers">Kilómetros</label>
+                <input id="kilometers" type="text">
+            </div>
+
+
+            <div class="form-item">
+                <label for="more">Más</label>
+                <input id="more" type="text">
+            </div>
+
+            <div class="form-item">
+                <label for="phone">Teléfono</label>
+                <input id="phone" type="text">
+
+            </div>
+
+            <div class="form-item">
+                <label for="photo_url">Url imagen</label>
+                <input id="photo_url" type="text">
+            </div>
+        </div>
+
+        <button class="vehicle-form-submit-button" type="submit">Publicar</button>
+    </form>
+</section>
+
+<script type="module" src="src/js/dom/admin-add-vehicles-dom.js"></script>
+<script src="src/js/dom/navigation-dom.js"></script>
+</body>
+</html>

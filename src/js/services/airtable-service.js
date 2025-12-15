@@ -42,6 +42,79 @@ export async function getVehicles() {
     }
 }
 
+export async function addVehicle(newVehicle) {
+
+    const vehiclesUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}`;
+
+    const {brand, fuelType, photoUrl, price, offer, kilometers, ...rest} = newVehicle;
+
+
+    const data = {
+        records: [
+            {
+                fields: {
+                    ...rest,
+                    price: Number(price),
+                    offer: Number(offer),
+                    kilometers: Number(kilometers),
+                    brand: [brand],
+                    photo_url: photoUrl,
+                    fuel_type: fuelType
+                }
+            }
+        ]
+    };
+
+    console.log(data)
+
+    try {
+        const response = await fetch(vehiclesUrl, createInit('POST', AIRTABLE_API_TOKEN, JSON.stringify(data)));
+
+        const result = await response.json();
+        console.log('RESULT INSERT', result);
+
+    } catch (err) {
+        console.error('Error al intentar insertar el vehículo', err);
+    }
+}
+
+export async function updateVehicle(updatedVehicle) {
+
+    const {id, transmission, engine, offer, fuelType, price, color, kilometers, more, phone, photoUrl} = updatedVehicle;
+    console.log('El id viene así:', id);
+    const vehiclesUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}/${id}`;
+
+    console.log('La URI se forma así:', vehiclesUrl);
+
+
+    const data = {
+        fields: {
+            transmission: transmission,
+            engine: engine,
+            color: color,
+            more: more,
+            phone: phone,
+            price: Number(price),
+            offer: Number(offer),
+            kilometers: Number(kilometers),
+            photo_url: photoUrl,
+            fuel_type: fuelType
+        }
+    };
+
+    console.log('LA DATA PARA ACTUALIZAR ES ESTA:', data)
+
+    try {
+        const response = await fetch(vehiclesUrl, createInit('PATCH', AIRTABLE_API_TOKEN, JSON.stringify(data)));
+
+        const result = await response.json();
+        console.log('RESULT UPDATE', result);
+
+    } catch (err) {
+        console.error('Error al intentar actualizar el vehículo', err);
+    }
+}
+
 export async function getVehicleInfoById(vehicleId) {
     try {
         const vehicleByIdUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}/${vehicleId}`;

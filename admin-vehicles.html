@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ecommerce ABP</title>
+  <link rel="stylesheet" href="src/styles/style.css">
+</head>
+<body>
+<nav class="menu">
+  <img class="menu-logo" src="img/icons/logo.svg" alt="logo">
+
+  <h1 class="menu-title">CAR SHOP</h1>
+  <div class="menu-items-desktop">
+    <a href="index.html" class="menu-item">Home</a>
+    <a href="contact.html" class="menu-item">Contact</a>
+    <a href="favs.html" class="menu-item">Favorites</a>
+    <a href="#" class="menu-item selected">Admin</a>
+  </div>
+
+  <button class="side-menu-button" onclick="openSideMenu()">
+    <img src="img/icons/bars.svg" alt="menu">
+  </button>
+  <div class="side-menu">
+    <div class="side-menu-header">
+      <button class="side-menu-close-button" onclick="closeSideMenu()">
+        <img src="img/icons/close.svg" alt="">
+      </button>
+    </div>
+    <ul class="side-menu-list">
+      <li class="side-menu-item">
+        <img src="img/icons/home.svg" alt="">
+        <a href="index.html" class="side-menu-link">Home</a>
+      </li>
+      <li class="side-menu-item">
+        <img src="img/icons/phone.svg" alt="">
+        <a href="contact.html" class="side-menu-link">Contact</a>
+      </li>
+      <li class="side-menu-item">
+        <img src="img/icons/phone.svg" alt="">
+        <a href="favs.html" class="side-menu-link">Favorites</a>
+      </li>
+      <li class="side-menu-item">
+        <img src="img/icons/phone.svg" alt="">
+        <a href="admin.html" class="side-menu-link selected">Admin</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="admin-section">
+  <h1>Admin</h1>
+
+  <!--    <div class="contacts-messages">-->
+  <!--    </div>-->
+  <div class="admin-cards-container">
+    <a href="admin-add-vehicles.html">
+      <div class="admin-card">
+        <p>Agregar vehículos</p>
+        <img src="/img/icons/right-arrow.svg" alt="">
+      </div>
+    </a>
+    <a href="admin-edit-vehicles.html">
+      <div class="admin-card">
+        <p>Editar vehículos</p>
+        <img src="/img/icons/right-arrow.svg" alt="">
+      </div>
+    </a>
+  </div>
+</section>
+
+<script src="src/js/dom/navigation-dom.js"></script>
+</body>
+</html>
