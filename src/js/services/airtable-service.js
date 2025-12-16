@@ -102,13 +102,11 @@ export async function updateVehicle(updatedVehicle) {
         }
     };
 
-    console.log('LA DATA PARA ACTUALIZAR ES ESTA:', data)
-
     try {
         const response = await fetch(vehiclesUrl, createInit('PATCH', AIRTABLE_API_TOKEN, JSON.stringify(data)));
 
         const result = await response.json();
-        console.log('RESULT UPDATE', result);
+        console.log('Vehículo actualizado', result);
 
     } catch (err) {
         console.error('Error al intentar actualizar el vehículo', err);
@@ -137,6 +135,18 @@ export async function getVehicleInfoById(vehicleId) {
     } catch (error) {
         console.error('Error al obtener vehiculo por ID desde Airtable:', error);
         throw error;
+    }
+}
+
+export async function deleteVehicleById(vehicleId) {
+    const vehicleByIdUrl = `${AIRTABLE_API_URL}${AIRTABLE_BASE_ID}/${AIRTABLE_TABLES['vehicles']}/${vehicleId}`
+
+    try {
+        console.log("Se va a eliminar un vehículo");
+        const response = await fetch(vehicleByIdUrl, createInit('delete', AIRTABLE_API_TOKEN));
+        return await response.json();
+    } catch (error) {
+        console.error('Ocurrió un error al intentar eliminar el vehículo:', error);
     }
 }
 
