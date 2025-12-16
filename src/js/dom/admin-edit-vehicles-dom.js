@@ -14,7 +14,7 @@ function availableVehicleCard(vehicle) {
     const {id, brand, model, price, phone, photoUrl, fuelType, engine, transmission, offer, color, kilometers, more} = vehicle
 
     return `
-        <a href="edit-vehicle-form.html?id=${id}&brand=${brand}&model=${model}&price=${price}&phone=${phone}&fuelType=${fuelType}&engine=${engine}&transmission=${transmission}&offer=${offer}&color=${color}&more=${more}&kilometers=${kilometers}&photoUrl=${photoUrl}" class="available-vehicle-card" data-vehicle-id="1">
+        <a href="edit-vehicle-form.html?id=${id}&brand=${brand}&model=${model}&price=${price}&phone=${phone}&fuelType=${fuelType}&engine=${engine}&transmission=${transmission}&offer=${offer}&color=${color}&more=${more}&kilometers=${kilometers}&photoUrl=${photoUrl}" class="available-vehicle-card">
             <img class="vehicle-img" src="${photoUrl}" alt="">
             <div class="vehicle-info">
                 <p><b>${brand} ${model}</b></p>
